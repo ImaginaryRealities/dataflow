@@ -69,6 +69,14 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         public abstract Message Receive(TimeSpan timeout);
 
         /// <summary>
+        /// Sends an object to a non-transactional queue.
+        /// </summary>
+        /// <param name="obj">
+        /// The object to send to the queue.
+        /// </param>
+        public abstract void Send(object obj);
+
+        /// <summary>
         /// Override in a derived class to dispose of the message queue
         /// object.
         /// </summary>

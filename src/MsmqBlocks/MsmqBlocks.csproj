@@ -133,6 +133,7 @@
     <Compile Include="MessageQueueBase.cs" />
     <Compile Include="MessageQueueFactory.cs" />
     <Compile Include="MessageQueueSourceBlock.cs" />
+    <Compile Include="MessageQueueTargetBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequiresPostSharp.cs" />
   </ItemGroup>
