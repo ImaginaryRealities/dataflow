@@ -47,6 +47,8 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         /// A <see cref="MessageEnumeratorBase"/> class.
         /// </returns>
         /// <seealso cref="MessageQueue.GetMessageEnumerator2"/>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "MFC3: This is ok. It mirrors an API provided by the MessageQueue class.")]
         public abstract MessageEnumeratorBase GetMessageEnumerator();
 
         /// <summary>

@@ -8,6 +8,7 @@
 namespace ImaginaryRealities.Framework.Dataflow.Msmq.UnitTests
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Messaging;
     using System.Threading.Tasks.Dataflow;
@@ -40,6 +41,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq.UnitTests
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "MFC3: The message object")]
         public void BlockOutputsMessageReceivedFromMsmqQueue()
         {
             var mockMessageEnumerator = new Mock<MessageEnumeratorBase>(MockBehavior.Strict);

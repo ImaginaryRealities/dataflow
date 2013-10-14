@@ -8,6 +8,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Messaging;
     using System.Threading;
@@ -25,6 +26,8 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
     /// queue.
     /// </typeparam>
     [Log]
+    [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable",
+        Justification = "MFC3: The disposable objects are disposed in the Complete and Fault methods.")]
     public sealed class MessageQueueSourceBlock<T> : IReceivableSourceBlock<T>
     {
         private readonly BufferBlock<T> bufferBlock;
@@ -32,7 +35,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         private readonly IReceivableSourceBlock<T> innerBlock;
- 
+
         private readonly MessageQueueFactory messageQueueFactory;
 
         private readonly string path;
@@ -159,6 +162,9 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
             this.innerBlock.ReleaseReservation(messageHeader, target);
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
+            Justification =
+                "MFC3: ReceiveMessages runs in its own thread. I want to catch any exception and report it as a fault.")]
         private void ReceiveMessages()
         {
             try
@@ -175,8 +181,10 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
                             continue;
                         }
 
-                        var message = messageQueue.Receive(timeout);
-                        this.bufferBlock.Post((T)message.Body);
+                        using (var message = messageQueue.Receive(timeout))
+                        {
+                            this.bufferBlock.Post((T)message.Body);
+                        }
                     }
                 }
             }
