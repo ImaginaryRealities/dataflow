@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.postsharp.org/1.0/configuration" xmlns:dg="clr-namespace:PostSharp.Patterns.Diagnostics;assembly:PostSharp.Patterns.Diagnostics">
+  <Using File="..\packages\PostSharp.Patterns.Diagnostics.3.0.37\tools\PostSharp.Patterns.Diagnostics.Weaver.dll" />
+  <dg:LoggingProfiles>
+    <dg:LoggingProfile Name="Default" OnEntryOptions="IncludeParameterType | IncludeParameterName | IncludeParameterValue | IncludeThisArgument" OnSuccessOptions="IncludeParameterType | IncludeParameterName | IncludeParameterValue | IncludeReturnValue | IncludeThisArgument" OnExceptionOptions="IncludeParameterType | IncludeParameterName | IncludeParameterValue | IncludeThisArgument" OnExceptionLevel="Error" />
+  </dg:LoggingProfiles>
+</Project>
