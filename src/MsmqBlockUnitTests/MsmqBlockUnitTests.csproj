@@ -117,6 +117,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.11\lib\portable-net45+win8\System.Threading.Tasks.Dataflow.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -128,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\DependentTransactionMessageQueueSourceBlockTests.cs" />
     <Compile Include="UnitTests\MessageQueueSourceBlockTests.cs" />
     <Compile Include="UnitTests\MessageQueueTargetBlockTests.cs" />
   </ItemGroup>

@@ -66,7 +66,29 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         /// <exception cref="MessageQueueException">
         /// A message did not arrive in the queue before the timeout expired.
         /// </exception>
+        /// <seealso cref="MessageQueue.Receive(TimeSpan)"/>
         public abstract Message Receive(TimeSpan timeout);
+
+        /// <summary>
+        /// Receives the first message available in the queue referenced by the
+        /// <see cref="MessageQueueBase"/> object. This call is synchronous,
+        /// and waits until either a message is available in the queue, or the
+        /// timeout expires.
+        /// </summary>
+        /// <param name="timeout">
+        /// A <see cref="TimeSpan"/> value that indicates the time to wait
+        /// until a new message is available.
+        /// </param>
+        /// <param name="transactionType">
+        /// A <see cref="MessageQueueTransactionType"/> value, describing the
+        /// type of transaction context to associate with the message.
+        /// </param>
+        /// <returns>
+        /// A <see cref="Message"/> object that references the message that
+        /// was read from the queue.
+        /// </returns>
+        /// <seealso cref="MessageQueue.Receive(TimeSpan, MessageQueueTransactionType)"/>
+        public abstract Message Receive(TimeSpan timeout, MessageQueueTransactionType transactionType);
 
         /// <summary>
         /// Sends an object to a non-transactional queue.
@@ -74,6 +96,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         /// <param name="obj">
         /// The object to send to the queue.
         /// </param>
+        /// <seealso cref="MessageQueue.Send(object)"/>
         public abstract void Send(object obj);
 
         /// <summary>

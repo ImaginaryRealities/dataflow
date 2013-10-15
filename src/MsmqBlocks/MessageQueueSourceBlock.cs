@@ -152,14 +152,14 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
             return this.innerBlock.ConsumeMessage(messageHeader, target, out messageConsumed);
         }
 
-        bool ISourceBlock<T>.ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock<T> target)
-        {
-            return this.innerBlock.ReserveMessage(messageHeader, target);
-        }
-
         void ISourceBlock<T>.ReleaseReservation(DataflowMessageHeader messageHeader, ITargetBlock<T> target)
         {
             this.innerBlock.ReleaseReservation(messageHeader, target);
+        }
+
+        bool ISourceBlock<T>.ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock<T> target)
+        {
+            return this.innerBlock.ReserveMessage(messageHeader, target);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
