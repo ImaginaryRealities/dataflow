@@ -130,6 +130,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\DependentTransactionMessageQueueSourceBlockTests.cs" />
+    <Compile Include="UnitTests\DependentTransactionMessageQueueTargetBlockTests.cs" />
     <Compile Include="UnitTests\MessageQueueSourceBlockTests.cs" />
     <Compile Include="UnitTests\MessageQueueTargetBlockTests.cs" />
   </ItemGroup>

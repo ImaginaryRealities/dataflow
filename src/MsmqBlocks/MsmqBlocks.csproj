@@ -132,6 +132,7 @@
   <ItemGroup>
     <Compile Include="DependentTransactionBase.cs" />
     <Compile Include="DependentTransactionMessageQueueSourceBlock.cs" />
+    <Compile Include="DependentTransactionMessageQueueTargetBlock.cs" />
     <Compile Include="MessageEnumeratorBase.cs" />
     <Compile Include="MessageQueueBase.cs" />
     <Compile Include="MessageQueueFactory.cs" />

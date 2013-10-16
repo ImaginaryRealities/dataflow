@@ -6,6 +6,7 @@
 
 namespace ImaginaryRealities.Framework.Dataflow.Msmq
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Transactions;
 
@@ -42,5 +43,19 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         {
             return wrapper.DependentTransaction;
         }
+
+        /// <summary>
+        /// Attempts to complete the dependent transaction.
+        /// </summary>
+        /// <seealso cref="System.Transactions.DependentTransaction.Complete"/>.
+        public abstract void Complete();
+
+        /// <summary>
+        /// Rolls back (aborts) the transaction.
+        /// </summary>
+        /// <param name="exception">
+        /// An explanation of why a rollback occurred.
+        /// </param>
+        public abstract void Rollback(Exception exception);
     }
 }

@@ -43,5 +43,18 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         /// A <see cref="TransactionScopeBase"/> object.
         /// </returns>
         public abstract TransactionScopeBase CreateTransactionScope();
+
+        /// <summary>
+        /// Creates a <see cref="TransactionScope"/> object and sets the
+        /// specified transaction as the ambient transaction, so that
+        /// transactional work done inside the scope uses this transaction.
+        /// </summary>
+        /// <param name="dependentTransaction">
+        /// The transaction to be set as the ambient transaction.
+        /// </param>
+        /// <returns>
+        /// A <see cref="TransactionScopeBase"/> object.
+        /// </returns>
+        public abstract TransactionScopeBase CreateTransactionScope(DependentTransactionBase dependentTransaction);
     }
 }

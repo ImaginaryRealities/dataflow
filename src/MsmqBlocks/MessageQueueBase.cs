@@ -100,6 +100,18 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         public abstract void Send(object obj);
 
         /// <summary>
+        /// Sends an object to a message queue.
+        /// </summary>
+        /// <param name="obj">
+        /// The object to send to the queue.
+        /// </param>
+        /// <param name="transactionType">
+        /// A <see cref="MessageQueueTransactionType"/> value describing the
+        /// type of transaction context to associate with the message.
+        /// </param>
+        public abstract void Send(object obj, MessageQueueTransactionType transactionType);
+
+        /// <summary>
         /// Override in a derived class to dispose of the message queue
         /// object.
         /// </summary>
