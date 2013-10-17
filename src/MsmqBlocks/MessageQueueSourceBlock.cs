@@ -42,6 +42,17 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
 
         private readonly Thread receiveThread;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageQueueSourceBlock{T}"/> class.
+        /// </summary>
+        /// <param name="path">
+        /// The path of the queue to receive messages from.
+        /// </param>
+        public MessageQueueSourceBlock(string path)
+            : this(new InternalMessageQueueFactory(), path)
+        {
+        }
+
         internal MessageQueueSourceBlock(MessageQueueFactory messageQueueFactory, string path)
         {
             this.messageQueueFactory = messageQueueFactory;
@@ -174,6 +185,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
                     var messageQueue = this.messageQueueFactory.CreateMessageQueue(this.path, QueueAccessMode.Receive))
                 using (var enumerator = messageQueue.GetMessageEnumerator())
                 {
+                    messageQueue.Formatter = new XmlMessageFormatter(new[] { typeof(T) });
                     while (!this.cancellationTokenSource.IsCancellationRequested)
                     {
                         if (!enumerator.MoveNext(timeout))

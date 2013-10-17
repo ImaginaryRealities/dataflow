@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsmqBlockUnitTests", "MsmqB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsmqBlocks", "MsmqBlocks\MsmqBlocks.csproj", "{5C50ABB6-0206-4F0C-A583-41F79B7DA769}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureTests", "FeatureTests\FeatureTests.csproj", "{A0F7AABC-B79D-440B-99EF-6AC38562D840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{5C50ABB6-0206-4F0C-A583-41F79B7DA769}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C50ABB6-0206-4F0C-A583-41F79B7DA769}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C50ABB6-0206-4F0C-A583-41F79B7DA769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F7AABC-B79D-440B-99EF-6AC38562D840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F7AABC-B79D-440B-99EF-6AC38562D840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F7AABC-B79D-440B-99EF-6AC38562D840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F7AABC-B79D-440B-99EF-6AC38562D840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

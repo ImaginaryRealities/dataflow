@@ -22,7 +22,18 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
     public sealed class MessageQueueTargetBlock<T> : ITargetBlock<T>
     {
         private readonly ITargetBlock<T> innerTargetBlock;
- 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageQueueTargetBlock{T}"/> class.
+        /// </summary>
+        /// <param name="path">
+        /// The path to the message queue to send messages to.
+        /// </param>
+        public MessageQueueTargetBlock(string path)
+            : this(new InternalMessageQueueFactory(), path)
+        {
+        }
+
         internal MessageQueueTargetBlock(MessageQueueFactory messageQueueFactory, string path)
         {
             this.innerTargetBlock = new ActionBlock<T>(

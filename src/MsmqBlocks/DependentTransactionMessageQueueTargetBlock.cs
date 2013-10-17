@@ -24,6 +24,17 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
     {
         private readonly ITargetBlock<Tuple<T, DependentTransactionBase>> innerTargetBlock;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DependentTransactionMessageQueueTargetBlock{T}"/> class.
+        /// </summary>
+        /// <param name="path">
+        /// The path of the queue to send messages to.
+        /// </param>
+        public DependentTransactionMessageQueueTargetBlock(string path)
+            : this(new InternalTransactionService(), new InternalMessageQueueFactory(), path)
+        {
+        }
+
         internal DependentTransactionMessageQueueTargetBlock(
             TransactionService transactionService,
             MessageQueueFactory messageQueueFactory,

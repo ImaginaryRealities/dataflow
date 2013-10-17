@@ -32,6 +32,17 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         }
 
         /// <summary>
+        /// Gets or sets the formatter used to serialize an object into or
+        /// deserialize an object from the body of a message read from or
+        /// written to the queue.
+        /// </summary>
+        /// <value>
+        /// An <see cref="IMessageFormatter"/> object that produces a stream
+        /// to be written to or read from the message body.
+        /// </value>
+        public abstract IMessageFormatter Formatter { get; set; }
+
+        /// <summary>
         /// Disposes of the message queue object.
         /// </summary>
         public void Dispose()

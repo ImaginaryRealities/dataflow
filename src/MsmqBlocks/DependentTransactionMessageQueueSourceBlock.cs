@@ -23,7 +23,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
     /// <typeparam name="T">
     /// The type of the message body.
     /// </typeparam>
-    internal class DependentTransactionMessageQueueSourceBlock<T> :
+    public sealed class DependentTransactionMessageQueueSourceBlock<T> :
         IReceivableSourceBlock<Tuple<T, DependentTransactionBase>>
     {
         private readonly BufferBlock<Tuple<T, DependentTransactionBase>> bufferBlock;
@@ -39,6 +39,17 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
         private readonly Thread receiveThread;
 
         private readonly TransactionService transactionService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DependentTransactionMessageQueueSourceBlock{T}"/> class.
+        /// </summary>
+        /// <param name="path">
+        /// The path of the message queue to receive messages from.
+        /// </param>
+        public DependentTransactionMessageQueueSourceBlock(string path)
+            : this(new InternalMessageQueueFactory(), new InternalTransactionService(), path)
+        {
+        }
 
         internal DependentTransactionMessageQueueSourceBlock(
             MessageQueueFactory messageQueueFactory,
@@ -174,6 +185,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq
                             QueueAccessMode.Receive);
                         using (messageQueue)
                         {
+                            messageQueue.Formatter = new XmlMessageFormatter(new[] { typeof(T) });
                             using (var enumerator = messageQueue.GetMessageEnumerator())
                             {
                                 if (!enumerator.MoveNext(timeout))
