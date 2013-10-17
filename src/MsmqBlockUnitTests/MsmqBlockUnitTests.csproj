@@ -133,6 +133,7 @@
     <Compile Include="UnitTests\DependentTransactionMessageQueueTargetBlockTests.cs" />
     <Compile Include="UnitTests\MessageQueueSourceBlockTests.cs" />
     <Compile Include="UnitTests\MessageQueueTargetBlockTests.cs" />
+    <Compile Include="UnitTests\TransactionalMessageQueueTargetBlockTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

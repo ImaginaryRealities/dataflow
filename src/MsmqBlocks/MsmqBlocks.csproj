@@ -145,6 +145,7 @@
     <Compile Include="MessageQueueWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequiresPostSharp.cs" />
+    <Compile Include="TransactionalMessageQueueTargetBlock.cs" />
     <Compile Include="TransactionScopeBase.cs" />
     <Compile Include="TransactionScopeWrapper.cs" />
     <Compile Include="TransactionService.cs" />
