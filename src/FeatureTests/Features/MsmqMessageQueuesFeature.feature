@@ -29,3 +29,9 @@ Scenario: Transaction rolls back if an error occurs
 	When I publish a message to the input message queue
 	And an exception occurs in the pipeline
 	Then the input message is remains in the input queue
+
+Scenario: Send message to transactional message queue
+	Given the output message queue exists
+	And the output message queue is empty
+	When I publish a message to the output message queue
+	Then the output message queue has the message

@@ -54,6 +54,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq.UnitTests
             var message = new Message("Hello!");
             mockMessageQueue.Setup(q => q.Receive(It.IsAny<TimeSpan>(), MessageQueueTransactionType.Automatic))
                 .Returns(message);
+            mockMessageQueue.SetupSet(x => x.Formatter = It.IsAny<XmlMessageFormatter>());
             var mockEnumerator = new Mock<MessageEnumeratorBase>(MockBehavior.Strict);
             mockMessageQueue.Setup(q => q.GetMessageEnumerator()).Returns(mockEnumerator.Object);
             var count = 0;

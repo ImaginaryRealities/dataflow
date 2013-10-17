@@ -47,6 +47,7 @@ namespace ImaginaryRealities.Framework.Dataflow.Msmq.UnitTests
             var mockMessageEnumerator = new Mock<MessageEnumeratorBase>(MockBehavior.Strict);
             mockMessageEnumerator.Protected().Setup("Dispose", true);
             this.mockMessageQueue.Setup(x => x.GetMessageEnumerator()).Returns(mockMessageEnumerator.Object);
+            this.mockMessageQueue.SetupSet(x => x.Formatter = It.IsAny<XmlMessageFormatter>());
             var calls = 0;
             mockMessageEnumerator.Setup(x => x.MoveNext(It.IsAny<TimeSpan>()))
                 .Returns(() => 0 == calls)

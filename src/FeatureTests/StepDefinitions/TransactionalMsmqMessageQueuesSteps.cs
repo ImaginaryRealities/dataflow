@@ -185,5 +185,33 @@ namespace ImaginaryRealities.Framework.Dataflow.FeatureTests.StepDefinitions
 
             Assert.That(count, Is.EqualTo(1));
         }
+
+        [When(@"I publish a message to the output message queue")]
+        public void WhenIPublishAMessageToTheOutputMessageQueue()
+        {
+            var block = new TransactionalMessageQueueTargetBlock<string>(OutputQueueName);
+            Assert.That(block.Post("Hello!"), Is.True);
+            Thread.Sleep(TimeSpan.FromSeconds(10.0));
+            block.Complete();
+            Assert.That(block.Completion.Wait(TimeSpan.FromSeconds(30.0)), Is.True);
+        }
+
+        [Then(@"the output message queue has the message")]
+        public void ThenTheOutputMessageQueueHasTheMessage()
+        {
+            var count = 0;
+            using (var messageQueue = new MessageQueue(OutputQueueName, QueueAccessMode.ReceiveAndAdmin))
+            {
+                using (var enumerator = messageQueue.GetMessageEnumerator2())
+                {
+                    while (enumerator.MoveNext())
+                    {
+                        ++count;
+                    }
+                }
+            }
+
+            Assert.That(count, Is.EqualTo(1));
+        }
     }
 }
